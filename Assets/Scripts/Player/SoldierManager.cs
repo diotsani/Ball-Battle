@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityTemplateProjects;
 using UnityTemplateProjects.Player;
@@ -12,7 +13,7 @@ public enum SoldierType
 public enum SoldierState
 {
     Attacker,
-    Defender
+    Defender,
 }
 public class SoldierManager : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class SoldierManager : MonoBehaviour
     public GameObject gateObject;
     public BallObject ballObject;
     
-    private List<SoldierObject> soldierObjects = new List<SoldierObject>();
+    public List<SoldierObject> soldierObjects = new List<SoldierObject>();
+    //public Animator animator;
+    public AnimatorController animatorController;
 
     void Start()
     {
@@ -86,11 +89,12 @@ public class SoldierManager : MonoBehaviour
         currentEnergy -= energyCost;
         SoldierObject obj = Instantiate(soldierPrefab, transform);
         soldierObjects.Add(obj);
-        obj.Initialize(Transform,soldierMaterial);
+        obj.Initialize(this,Transform,soldierMaterial);
         obj.State = soldierState;
         obj.Gate = gateObject;
         obj.Ball = ballObject;
         obj.name = soldierType.ToString();
+        obj.soldierAnimator.runtimeAnimatorController = animatorController;
     }
     public void BallHolder()
     {
