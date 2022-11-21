@@ -89,7 +89,7 @@ public class SoldierManager : MonoBehaviour
         currentEnergy -= energyCost;
         SoldierObject obj = Instantiate(soldierPrefab, transform);
         soldierObjects.Add(obj);
-        obj.Initialize(this,Transform,soldierMaterial);
+        obj.Initialize(this,Transform,soldierMaterial,soldierState);
         obj.State = soldierState;
         obj.Gate = gateObject;
         obj.Ball = ballObject;
