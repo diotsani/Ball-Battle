@@ -39,20 +39,17 @@ namespace BallBattle
 
         private void CheckFOV()
         {
-            if(soldierObject._state == SoldierState.Attacker)return;
-            
+            if(soldierObject.state == SoldierState.Attacker)return;
             Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, radius, _targetMask);
             for (int i = 0; i < targetsInViewRadius.Length; i++)
             {
                 Transform target = targetsInViewRadius[i].transform;
                 SoldierObject targetSoldierObject = target.GetComponent<SoldierObject>();
-                if (targetSoldierObject.isHoldBall)
+                if (targetSoldierObject.soldierStatus == SoldierStatus.HoldBall)
                 {
+                    if(soldierObject.soldierStatus != SoldierStatus.Standby)return;
                     soldierObject.targetSoldier = targetSoldierObject;
-                }
-                else
-                {
-                    soldierObject.targetSoldier = null;
+                    soldierObject.soldierStatus = SoldierStatus.Active;
                 }
 
                 Vector3 dirToTarget = (target.position - transform.position).normalized;

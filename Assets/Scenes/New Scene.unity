@@ -153,7 +153,37 @@ Transform:
   - {fileID: 1819760753}
   - {fileID: 630111767}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &89666078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89666079}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89666079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89666078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 0, z: -6.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &98736246
 PrefabInstance:
@@ -272,7 +302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &216816209
 MonoBehaviour:
@@ -289,7 +319,8 @@ MonoBehaviour:
   soldierType: 0
   soldierState: 0
   energyCost: 0
-  currentEnergy: 0
+  currentEnergy: 6
+  _yRotation: 0
   gateObject: {fileID: 1819760752}
   ballObject: {fileID: 1745301285}
   soldierObjects: []
@@ -441,7 +472,8 @@ MonoBehaviour:
   soldierType: 1
   soldierState: 1
   energyCost: 0
-  currentEnergy: 0
+  currentEnergy: 6
+  _yRotation: 0
   gateObject: {fileID: 1219459979}
   ballObject: {fileID: 1745301285}
   soldierObjects: []
@@ -458,7 +490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &591167474
 GameObject:
@@ -694,7 +726,7 @@ GameObject:
   - component: {fileID: 1219459981}
   m_Layer: 0
   m_Name: PlayerGoal
-  m_TagString: Untagged
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -875,6 +907,10 @@ PrefabInstance:
     - target: {fileID: 170308, guid: 4c4ea267b7f410b418aa1a42c46bacd3, type: 3}
       propertyPath: m_Name
       value: Mixed_Ground_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 170308, guid: 4c4ea267b7f410b418aa1a42c46bacd3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 405600, guid: 4c4ea267b7f410b418aa1a42c46bacd3, type: 3}
       propertyPath: m_RootOrder
@@ -1126,8 +1162,8 @@ GameObject:
   - component: {fileID: 1745301283}
   - component: {fileID: 1745301282}
   - component: {fileID: 1745301281}
-  - component: {fileID: 1745301285}
   - component: {fileID: 1745301286}
+  - component: {fileID: 1745301285}
   m_Layer: 0
   m_Name: BallObject
   m_TagString: Ball
@@ -1203,8 +1239,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745301280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.145, y: 0.22, z: -0.26}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.145, y: 0.22, z: 0.6}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1221,9 +1257,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3d70a03b334977b8783dacc662f214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierManager: {fileID: 216816209}
+  playerManager: {fileID: 216816209}
+  enemyManager: {fileID: 523626642}
   currentSoldier: {fileID: 0}
+  _passTarget: {fileID: 0}
+  defaultParent: {fileID: 2059089590}
+  ballSpeed: 1.5
+  ballStatus: 0
   IsHold: 0
+  minY: 0.22
+  areaMinX: -2
+  areaMaxX: 2
+  playerMinZ: -0.5
+  playerMaxZ: -6
+  enemyMinZ: 0.5
+  enemyMaxZ: 6
 --- !u!54 &1745301286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1342,7 +1390,7 @@ GameObject:
   - component: {fileID: 1819760754}
   m_Layer: 0
   m_Name: EnemyGoal
-  m_TagString: Untagged
+  m_TagString: Gate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1421,6 +1469,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819760752}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2059089589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2059089590}
+  m_Layer: 0
+  m_Name: BallParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2059089590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059089589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7754382574121164483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1441,7 +1519,7 @@ PrefabInstance:
     - target: {fileID: 7754382573817530187, guid: c0fd109d325631e4a868eca30862ae30,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7754382573817530187, guid: c0fd109d325631e4a868eca30862ae30,
         type: 3}
@@ -1491,6 +1569,11 @@ PrefabInstance:
     - target: {fileID: 7754382573817530187, guid: c0fd109d325631e4a868eca30862ae30,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7758944536300171065, guid: c0fd109d325631e4a868eca30862ae30,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

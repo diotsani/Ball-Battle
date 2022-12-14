@@ -10,6 +10,7 @@ TagManager:
   - Fence
   - Attacker
   - Defender
+  - Gate
   layers:
   - Default
   - TransparentFX

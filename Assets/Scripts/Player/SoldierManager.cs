@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityTemplateProjects;
@@ -27,6 +28,8 @@ public class SoldierManager : MonoBehaviour
     public float currentEnergy;
     private float _maxEnergy = 6;
 
+    public float _yRotation;
+
     private Material soldierMaterial;
     private SoldierObject soldierPrefab;
     public GameObject gateObject;
@@ -40,6 +43,16 @@ public class SoldierManager : MonoBehaviour
     {
         soldierMaterial = Resources.Load<Material>("Materials/"+soldierType+"Material");
         soldierPrefab = Resources.Load<SoldierObject>("Prefabs/Soldier");
+
+        switch (soldierType)
+        {
+            case SoldierType.Player:
+                _yRotation = 0;
+                break;
+            case SoldierType.Enemy:
+                _yRotation = 180;
+                break;
+        }
     }
     
     void Update()
@@ -95,15 +108,5 @@ public class SoldierManager : MonoBehaviour
         obj.Ball = ballObject;
         obj.name = soldierType.ToString();
         obj.soldierAnimator.runtimeAnimatorController = animatorController;
-    }
-    public void BallHolder()
-    {
-        foreach (var soldier in soldierObjects)
-        {
-            if(soldier.State == SoldierState.Attacker)
-            {
-                soldier.isHoldBall = true;
-            }
-        }
     }
 }
